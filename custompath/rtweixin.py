@@ -27,16 +27,19 @@ class RtWeiXin(tornado.web.RequestHandler):
         print "xml: ", xml_content_
         self._wechat.parse_data(xml_content_)
         wechat_message_ = self._wechat.get_message()
-        print "message: ", wechat_message_
+        message_content_ = "undefined."
         response_ = "undefined."
         if "text" == wechat_message_.type:
             message_content_ = wechat_message_.content
-            response_ = message_content_
+            if shconfig.gUsersDict.has_key(message_content_):
+                njsanhui.appEntry(message_content_)
+                response_ = shconfig.gUsersDict[message_content_]["my_name"]
+        response_ = "Rx:%s, Tx:%s" % (message_content_, response_)
         self.write(self._wechat.response_text(response_))
 
     def get(self, *args, **kwargs):
-        print "get", args, kwargs
-        print self.request.arguments
+        print "get:", args, kwargs
+        print "params: ", self.request.arguments
         echo_str_ = self.get_argument("echostr", "")
         if echo_str_:
             self.write(echo_str_)
