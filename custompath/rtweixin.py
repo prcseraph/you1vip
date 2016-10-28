@@ -21,11 +21,13 @@ class RtWeiXin(tornado.web.RequestHandler):
         return result_qd_
 
     def post(self, *args, **kwargs):
-        print "post", args, kwargs
-        print self.request.arguments
+        print "post: ", args, kwargs
+        print "params: ", self.request.arguments
         xml_content_ = self.request.body
+        print "xml: ", xml_content_
         self._wechat.parse_data(xml_content_)
         wechat_message_ = self._wechat.get_message()
+        print "message: ", wechat_message_
         response_ = "undefined."
         if "text" == wechat_message_.type:
             message_content_ = wechat_message_.content
