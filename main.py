@@ -45,7 +45,7 @@ def main():
         login_url="/",
         template_path=os.path.join(os.path.dirname(__file__), "templates"),
         static_path=os.path.join(os.path.dirname(__file__), "static"),
-        xsrf_cookies=True,
+        xsrf_cookies=False,
     )
     app.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
