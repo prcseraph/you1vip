@@ -42,7 +42,7 @@ class RtWeiXin(tornado.web.RequestHandler):
                     qd_tag_ = True
                 else:
                     diff_time_ = abs(current_time_ - cache_time_)
-                    if diff_time_.minute > 5: qd_tag_ = True
+                    if diff_time_.seconds > 5 * 60: qd_tag_ = True
                 response_ = shconfig.gUsersDict[message_content_]["my_name"]
         response_ = "Rx:%s, Tx:%s" % (message_content_, response_)
         self.write(self._wechat.response_text(response_))
