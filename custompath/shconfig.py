@@ -13,6 +13,7 @@ gVersion = "1.9.4"
 # method=get_token&token=null&deviceid=78265209-05AA-443F-A20B-502C902E63FF
 gUsersDict = {
     "13952010386": {
+        "rx_time": None,
         "my_name": "lq",
         "device_os": "IOS",
         "device_id": "32014066-AD8E-4518-B83F-87A9E690AEE2",
@@ -21,6 +22,7 @@ gUsersDict = {
         "response": {}
     },
     "13813948023": {
+        "rx_time": None,
         "my_name": "jy",
         "device_os": "IOS",
         "device_id": "78265209-05AA-443F-A20B-502C902E63FF",
@@ -29,6 +31,7 @@ gUsersDict = {
         "response": {}
     },
     "13912996234": {
+        "rx_time": None,
         "my_name": "wzq",
         "device_os": "IOS",
         "device_id": "32014066-AD8E-4518-B83F-87A9E690AEE2",
@@ -37,6 +40,7 @@ gUsersDict = {
         "response": {}
     },
     "13951801524": {
+        "rx_time": None,
         "my_name": "llx",
         "device_os": "IOS",
         "device_id": "32014066-AD8E-4518-B83F-87A9E690AEE2",

@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 import tornado.web
+import time
+import datetime
+
+from wechat_sdk import WechatBasic
 import njsanhui
 import shconfig
-from wechat_sdk import WechatBasic
 
 class RtWeiXin(tornado.web.RequestHandler):
     # _success_h5 = "<body style='background-color:#93FF93'>Y</body>"
@@ -29,13 +32,21 @@ class RtWeiXin(tornado.web.RequestHandler):
         wechat_message_ = self._wechat.get_message()
         message_content_ = "undefined."
         response_ = "undefined."
+        current_time_ = datetime.datetime.now()
+        qd_tag_ = False
         if "text" == wechat_message_.type:
             message_content_ = wechat_message_.content
             if shconfig.gUsersDict.has_key(message_content_):
-                njsanhui.appEntry(message_content_)
+                cache_time_ = shconfig.gUsersDict[message_content_]["rx_time"]
+                if not cache_time_: qd_tag_ = True
+                diff_time_ = abs(current_time_ - cache_time_)
+                if diff_time_.minute > 5: qd_tag_ = True
                 response_ = shconfig.gUsersDict[message_content_]["my_name"]
         response_ = "Rx:%s, Tx:%s" % (message_content_, response_)
         self.write(self._wechat.response_text(response_))
+        if qd_tag_:
+            shconfig.gUsersDict[message_content_]["rx_time"] = current_time_
+            njsanhui.appEntry(message_content_)
 
     def get(self, *args, **kwargs):
         print "get:", args, kwargs
