@@ -10,10 +10,7 @@ class RtWeiXin(tornado.web.RequestHandler):
     _fktoken = "you1vip"
     _fksignature = "z69h8Q04AWZDi1mtQtPC1SjwCa6NK0OfIiq1LNBABlf"
     _fkapp_id = "wx453ca7ac04b693b5"
-
-    def __init__(self):
-        super(tornado.web.RequestHandler, self).__init__()
-        self._wechat = WechatBasic(token=self._fktoken)
+    _wechat = WechatBasic(token=_fktoken)
 
     def _sanhuiQiandao(self, content=None):
         result_qd_ = "failed"
