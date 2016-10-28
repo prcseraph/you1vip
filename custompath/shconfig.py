@@ -12,6 +12,14 @@ gVersion = "1.9.4"
 # "DeviceID": "78265209-05AA-443F-A20B-502C902E63FF"
 # method=get_token&token=null&deviceid=78265209-05AA-443F-A20B-502C902E63FF
 gUsersDict = {
+    "13952010386": {
+        "my_name": "lq",
+        "device_os": "IOS",
+        "device_id": "32014066-AD8E-4518-B83F-87A9E690AEE2",
+        "mobile_id": "c5581de51e5956c5c3f30a6f7d38efe3",
+        "qiandao": 0,
+        "response": {}
+    },
     "13813948023": {
         "my_name": "jy",
         "device_os": "IOS",
