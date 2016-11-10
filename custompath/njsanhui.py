@@ -21,7 +21,6 @@ def getValidCookie(cookie):
     return ";".join(list_)
 
 def logInSanhui(sh_usr, sh_pwd):
-    md5_password_ = getMd5Password(sh_usr, sh_pwd)
     # http://1565ek6742.iok.la:8088/njsanhui/XD.Login/token.ashx?method=get_token&token=null
     # &deviceid=32014066-AD8E-4518-B83F-87A9E690AEE2
     #
@@ -30,6 +29,9 @@ def logInSanhui(sh_usr, sh_pwd):
     #
     # {"LoginName": "13813948023", "MobileID": "c5581de51e5956c5c3f30a6f7d38efe3", "OS": "IOS",
     #  "MD5_Password": "6cd1b4683f9ea3ad7c3e3a370494d3b3", "DeviceID": "32014066-AD8E-4518-B83F-87A9E690AEE2"}
+    #
+    # md5_password_ = getMd5Password(sh_usr, sh_pwd)
+    md5_password_ = shconfig.gUsersDict[sh_usr]["md5_pwd"]
     url_ = shconfig.getInterfaceUrlSSL(sh_usr, "XD.Login/token.ashx", "get_token")
     params_ = {
         "LoginName": sh_usr,
@@ -109,6 +111,7 @@ def appEntry(sh_usr, sh_pwd="88888"):
         return False
 
 if __name__ == "__main__":
-    usr_ = "13813948023"
     pwd_ = "88888"
-    appEntry(usr_, pwd_)
+    for usr_ in shconfig.gUsersDict:
+        md5_pwd_ = getMd5Password(usr_, pwd_)
+        print usr_, md5_pwd_
