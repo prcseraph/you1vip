@@ -13,7 +13,8 @@ gAttachUrl = 'http://cloud.haopan.net/cloud/'
 gUsersDict = {
     "13952010386": {
         "rx_time": None,
-        "my_name": "lq",
+        "my_usr": "lq",
+        "my_pwd": "88888",
         "device_os": "IOS",
         "md5_pwd": "7ef5a27a887292981e8b7806405e5c9f",
         "mobile_id": "c5581de51e5956c5c3f30a6f7d38efe3",
@@ -23,9 +24,10 @@ gUsersDict = {
     },
     "13813948023": {
         "rx_time": None,
-        "my_name": "jy",
+        "my_usr": "jy",
+        "my_pwd": "jy091845",
         "device_os": "IOS",
-        "md5_pwd": "6cd1b4683f9ea3ad7c3e3a370494d3b3",
+        "md5_pwd": "872340a01cb322b4e8acbc4ac9a76b8b",
         "mobile_id": "6e110225688f68ee4708566ed971a27d",
         "device_id": "78265209-05AA-443F-A20B-502C902E63FF",
         "qiandao": 0,
@@ -33,7 +35,8 @@ gUsersDict = {
     },
     "13912996234": {
         "rx_time": None,
-        "my_name": "wzq",
+        "my_usr": "wzq",
+        "my_pwd": "88888",
         "device_os": "IOS",
         "md5_pwd": "d8e6d32cdd8ee6af55e432dea3bcc161",
         "mobile_id": "80cc4428e019be8d45bab8e19bc5811f",
@@ -43,7 +46,8 @@ gUsersDict = {
     },
     "13951801524": {
         "rx_time": None,
-        "my_name": "llx",
+        "my_usr": "llx",
+        "my_pwd": "88888",
         "device_os": "IOS",
         "md5_pwd": "e19a4ed4a9a0ff620f4eaff6d384f6c1",
         "mobile_id": "c5581de51e5956c5c3f30a6f7d38efe3",

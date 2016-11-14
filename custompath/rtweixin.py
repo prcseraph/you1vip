@@ -20,7 +20,7 @@ class RtWeiXin(tornado.web.RequestHandler):
         if content:
             if shconfig.gUsersDict.has_key(content):
                 njsanhui.appEntry(content)
-                result_qd_ = shconfig.gUsersDict[content]["my_name"]
+                result_qd_ = shconfig.gUsersDict[content]["my_usr"]
         return result_qd_
 
     def post(self, *args, **kwargs):
@@ -43,7 +43,7 @@ class RtWeiXin(tornado.web.RequestHandler):
                 else:
                     diff_time_ = abs(current_time_ - cache_time_)
                     if diff_time_.seconds > 5 * 60: qd_tag_ = True
-                response_ = shconfig.gUsersDict[message_content_]["my_name"]
+                response_ = shconfig.gUsersDict[message_content_]["my_usr"]
         response_ = "Rx:%s, Tx:%s" % (message_content_, response_)
         self.write(self._wechat.response_text(response_))
         if qd_tag_:
