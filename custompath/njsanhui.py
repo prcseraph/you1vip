@@ -36,12 +36,15 @@ def logInSanhui(sh_usr, sh_pwd):
         md5_password_ = shconfig.gUsersDict[sh_usr]["md5_pwd"]
     url_ = shconfig.getInterfaceUrlSSL(sh_usr, "XD.Login/token.ashx", "get_token")
     params_ = {
+        # "method": "get_token",
+        # "token": "null",
         "LoginName": sh_usr,
         "MobileID": shconfig.gUsersDict[sh_usr]["mobile_id"],
         "OS": shconfig.gUsersDict[sh_usr]["device_os"],
         "MD5_Password": md5_password_,
-        "DeviceID": shconfig.gUsersDict[sh_usr]["device_id"]
+        "DeviceID": shconfig.gUsersDict[sh_usr]["device_id"],
     }
+    # return pyajax.requestAjax(url_, params_)
     return pyajax.requestAjaxUrl(url_, params_)
 
 def updateApplication(usr):
@@ -53,6 +56,7 @@ def updateApplication(usr):
         "currentVersion": shconfig.gVersion
     }
     return pyajax.requestAjax(url_, params_)
+    # return pyajax.requestAjaxUrl(url_, params_)
 
 def getMyInfo(usr):
     url_ = shconfig.gServerUrl + "AppService/App_Data.ashx"
@@ -62,6 +66,7 @@ def getMyInfo(usr):
         "device_id": shconfig.gUsersDict[usr]["device_id"],
     }
     return pyajax.requestAjax(url_, params_)
+    # return pyajax.requestAjaxUrl(url_, params_)
 
 def queryQianDao(usr):
     if not shconfig.gUsersDict[usr]["response"]:
@@ -69,10 +74,12 @@ def queryQianDao(usr):
     url_ = shconfig.gServerUrl + "HR/Attendance/Attendance_Data.ashx"
     params_ = {
         "method": 'SignTime',
+        # "method": 'SignInfo',
         "token": shconfig.gUsersDict[usr]["response"]["token"],
         "device_id": shconfig.gUsersDict[usr]["device_id"]
     }
     return pyajax.requestAjax(url_, params_)
+    # return pyajax.requestAjaxUrl(url_, params_)
 
 def postQianDao(usr):
     sign_type_ = 2
@@ -90,6 +97,7 @@ def postQianDao(usr):
         "x": 118.760549, "Y": 32.072486
     }
     return pyajax.requestAjax(url_, params_)
+    # return pyajax.requestAjaxUrl(url_, params_)
 
 def appEntry(sh_usr, sh_pwd=None):
     response_ = logInSanhui(sh_usr, sh_pwd)
@@ -97,14 +105,19 @@ def appEntry(sh_usr, sh_pwd=None):
         return False
     response_json_ = json.loads(response_)
     shconfig.gUsersDict[sh_usr]["response"] = response_json_
+    #
+    # print updateApplication(sh_usr)
+    # response_ = getMyInfo(sh_usr)
+    # if not response_:
+    #     return False
+    # print response_
+    #
     response_ = queryQianDao(sh_usr)
     if not response_:
         return False
     response_json_ = json.loads(response_)
     shconfig.gUsersDict[sh_usr]["qiandao"] = int(response_json_["message"])
-    # print shconfig.gUsersDict
-    # print updateApplication(sh_usr)
-    # print getMyInfo(sh_usr)
+    #
     response_ = postQianDao(sh_usr)
     print response_
     if response_:
@@ -116,3 +129,4 @@ if __name__ == "__main__":
     for usr_ in shconfig.gUsersDict:
         md5_pwd_ = getMd5Password(usr_, shconfig.gUsersDict[usr_]["my_pwd"])
         print usr_, md5_pwd_
+        # appEntry("13813948023")
