@@ -52,7 +52,7 @@ def parseSetCookies(set_cookies):
     regex_ = re.compile("(HP\d{4}Frame)")
     result_cookies_ = {}
     for line_ in set_cookies.split(';'):
-        print line_
+        # print line_
         try:
             name_, value_ = line_.strip().split('=', 1)
             find_key_ = regex_.findall(name_)
