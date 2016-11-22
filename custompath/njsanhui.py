@@ -129,4 +129,4 @@ if __name__ == "__main__":
     for usr_ in shconfig.gUsersDict:
         md5_pwd_ = getMd5Password(usr_, shconfig.gUsersDict[usr_]["my_pwd"])
         print usr_, md5_pwd_
-        # appEntry("13813948023")
+    appEntry("13813948023")

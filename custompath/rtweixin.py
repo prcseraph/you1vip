@@ -2,9 +2,10 @@
 import tornado.web
 import time
 import datetime
+import requests
 
 from wechat_sdk import WechatBasic
-import njsanhui
+# import njsanhui
 import shconfig
 
 class RtWeiXin(tornado.web.RequestHandler):
@@ -14,14 +15,13 @@ class RtWeiXin(tornado.web.RequestHandler):
     _fksignature = "z69h8Q04AWZDi1mtQtPC1SjwCa6NK0OfIiq1LNBABlf"
     _fkapp_id = "wx453ca7ac04b693b5"
     _wechat = WechatBasic(token=_fktoken)
+    _sanhui_qiandao_url = "http://180.96.28.83:83/shqd?vip="
 
     def _sanhuiQiandao(self, content=None):
-        result_qd_ = "failed"
         if content:
-            if shconfig.gUsersDict.has_key(content):
-                njsanhui.appEntry(content)
-                result_qd_ = shconfig.gUsersDict[content]["my_usr"]
-        return result_qd_
+            # if shconfig.gUsersDict.has_key(content):
+            #     njsanhui.appEntry(content)
+            requests.post(self._sanhui_qiandao_url + content)
 
     def post(self, *args, **kwargs):
         print "post: ", args, kwargs
@@ -48,7 +48,7 @@ class RtWeiXin(tornado.web.RequestHandler):
         self.write(self._wechat.response_text(response_))
         if qd_tag_:
             shconfig.gUsersDict[message_content_]["rx_time"] = current_time_
-            njsanhui.appEntry(message_content_)
+            self._sanhuiQiandao(message_content_)
 
     def get(self, *args, **kwargs):
         print "get:", args, kwargs
@@ -56,3 +56,6 @@ class RtWeiXin(tornado.web.RequestHandler):
         echo_str_ = self.get_argument("echostr", "")
         if echo_str_:
             self.write(echo_str_)
+
+if __name__ == "__main__":
+    requests.post("http://192.168.0.99:83/shqd?vip=12345678907")
